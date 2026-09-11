@@ -1,0 +1,2380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinInOne - Master Your Money, Own Your Future</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-indigo: #4F46E5;
+            --primary-purple: #7C3AED;
+            --accent-cyan: #06B6D4;
+            --accent-emerald: #10B981;
+            --accent-amber: #F59E0B;
+            --accent-rose: #F43F5E;
+            
+            --dark-bg: #0F172A;
+            --dark-card: #1E293B;
+            --dark-border: #334155;
+            
+            --light-bg: #FAFBFC;
+            --white: #FFFFFF;
+            --text-primary: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #94A3B8;
+            
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-success: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            --gradient-info: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
+            --gradient-purple: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+            
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.15);
+            
+            --transition-base: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--light-bg);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            z-index: 1000;
+            transition: var(--transition-base);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.25rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition-base);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-indigo);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-download {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
+            font-size: 0.95rem;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            cursor: pointer;
+            color: var(--primary-indigo);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 8rem 3rem 6rem;
+            background: linear-gradient(180deg, #FAFBFC 0%, #F1F5F9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            line-height: 1.1;
+            color: var(--text-primary);
+            margin-bottom: 2rem;
+            letter-spacing: -2px;
+        }
+
+        .hero-gradient-text {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.35rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .hero-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-feature-text {
+            flex: 1;
+        }
+
+        .hero-feature-text h4 {
+            font-size: 1rem;
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-feature-text p {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.125rem 2.5rem;
+            border-radius: 14px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+            font-size: 1.05rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-indigo);
+            padding: 1.125rem 2.5rem;
+            border-radius: 14px;
+            border: 2px solid var(--primary-indigo);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-base);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.05rem;
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-indigo);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .phone-mockup {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .phone-frame {
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            border-radius: 50px;
+            padding: 1.25rem;
+            box-shadow: 0 30px 80px rgba(15, 23, 42, 0.4);
+            position: relative;
+        }
+
+        .phone-notch {
+            position: absolute;
+            top: 1.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 30px;
+            background: #0F172A;
+            border-radius: 0 0 20px 20px;
+            z-index: 10;
+        }
+
+        .phone-screen {
+            background: linear-gradient(180deg, #FAFBFC 0%, #F8FAFC 100%);
+            border-radius: 40px;
+            padding: 3rem 1.75rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .screen-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .screen-header h3 {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .screen-header p {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .health-score-container {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .health-score-ring {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .health-score-circle {
+            width: 100%;
+            height: 100%;
+            background: conic-gradient(
+                from 0deg,
+                var(--accent-emerald) 0%,
+                var(--accent-emerald) 82%,
+                #E2E8F0 82%,
+                #E2E8F0 100%
+            );
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .health-score-inner {
+            width: 140px;
+            height: 140px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .health-score-value {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--gradient-success);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .health-score-label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        .health-status {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent-emerald);
+        }
+
+        .screen-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-base);
+        }
+
+        .stat-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .stat-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .stat-icon.income {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+        }
+
+        .stat-icon.expense {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+        }
+
+        .stat-icon.savings {
+            background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
+        }
+
+        .stat-details h4 {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-size: 1.125rem;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .stat-trend {
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+        }
+
+        .stat-trend.positive {
+            color: var(--accent-emerald);
+            background: rgba(16, 185, 129, 0.1);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-25px); }
+        }
+
+        /* Trust Bar */
+        .trust-bar {
+            background: white;
+            padding: 3rem 3rem;
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .trust-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+        }
+
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .trust-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .trust-item h4 {
+            color: var(--text-primary);
+            font-size: 1.125rem;
+            font-weight: 700;
+        }
+
+        .trust-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 7rem 3rem;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--primary-indigo);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* Features Section */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(180deg, #FAFBFC 0%, #F8FAFC 100%);
+            padding: 2.5rem;
+            border-radius: 24px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: var(--transition-smooth);
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: var(--transition-base);
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+
+        .feature-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-primary);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.75rem;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .feature-card h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            line-height: 1.3;
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .feature-highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            position: relative;
+        }
+
+        .feature-badge {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.375rem 0.875rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Expense Tracker Showcase */
+        .expense-showcase {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 8rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .expense-showcase::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            right: -200px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .expense-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .expense-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .expense-header .section-label {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .expense-header h2 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .expense-header p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.35rem;
+        }
+
+        .expense-demo {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .expense-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .expense-step {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            transition: var(--transition-base);
+        }
+
+        .expense-step:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateX(10px);
+        }
+
+        .expense-step-number {
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: var(--primary-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            flex-shrink: 0;
+        }
+
+        .expense-step-content h3 {
+            color: white;
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+            font-weight: 800;
+        }
+
+        .expense-step-content p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        .expense-visual {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+        }
+
+        .expense-visual h4 {
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .budget-categories {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .budget-category {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .category-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-name {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .category-icon-small {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.125rem;
+        }
+
+        .category-icon-small.food {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+        }
+
+        .category-icon-small.transport {
+            background: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
+        }
+
+        .category-icon-small.shopping {
+            background: linear-gradient(135deg, #F43F5E 0%, #E11D48 100%);
+        }
+
+        .category-amount {
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .category-amount span {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #E2E8F0;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress-fill.safe {
+            background: linear-gradient(90deg, #10B981 0%, #059669 100%);
+        }
+
+        .progress-fill.warning {
+            background: linear-gradient(90deg, #F59E0B 0%, #D97706 100%);
+        }
+
+        .progress-fill.danger {
+            background: linear-gradient(90deg, #F43F5E 0%, #E11D48 100%);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: white;
+        }
+
+        .steps-timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline-line {
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--primary-indigo) 0%, 
+                var(--primary-indigo) 25%,
+                var(--accent-cyan) 25%,
+                var(--accent-cyan) 50%,
+                var(--accent-emerald) 50%,
+                var(--accent-emerald) 75%,
+                var(--primary-purple) 75%,
+                var(--primary-purple) 100%
+            );
+            z-index: 0;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.75rem;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            border: 4px solid white;
+        }
+
+        .step:nth-child(2) .step-icon-wrapper {
+            background: var(--gradient-info);
+        }
+
+        .step:nth-child(3) .step-icon-wrapper {
+            background: var(--gradient-success);
+        }
+
+        .step:nth-child(4) .step-icon-wrapper {
+            background: var(--gradient-purple);
+        }
+
+        .step h3 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+            font-weight: 800;
+        }
+
+        .step p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Security Section */
+        .security {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .security::before {
+            content: '';
+            position: absolute;
+            top: -300px;
+            left: -300px;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .security .section-label {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .security .section-header h2,
+        .security .section-header p {
+            color: white;
+        }
+
+        .security-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .security-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition-base);
+        }
+
+        .security-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .security-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.25rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .security-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .security-card p {
+            opacity: 0.9;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Language Section */
+        .multi-language {
+            background: var(--light-bg);
+        }
+
+        .language-showcase {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 4rem;
+            border-radius: 30px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .language-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .lang-tab {
+            padding: 1rem 2.5rem;
+            border-radius: 14px;
+            border: 2px solid #E2E8F0;
+            background: white;
+            color: var(--text-primary);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition-base);
+            font-size: 1.05rem;
+        }
+
+        .lang-tab.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .lang-tab:hover:not(.active) {
+            border-color: var(--primary-indigo);
+            transform: translateY(-2px);
+        }
+
+        .language-content {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(180deg, #FAFBFC 0%, #F8FAFC 100%);
+            border-radius: 20px;
+        }
+
+        .language-content h3 {
+            font-size: 2rem;
+            color: var(--text-primary);
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .language-content p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background: white;
+        }
+
+        .testimonials-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(180deg, #FAFBFC 0%, #F8FAFC 100%);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: var(--transition-base);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 2rem;
+            left: 2.5rem;
+            font-size: 6rem;
+            color: rgba(102, 126, 234, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(102, 126, 234, 0.2);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.9;
+            font-size: 1.05rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 900;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .author-info h4 {
+            color: var(--text-primary);
+            font-size: 1.125rem;
+            margin-bottom: 0.375rem;
+            font-weight: 800;
+        }
+
+        .author-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .rating {
+            margin-top: 0.5rem;
+            color: var(--accent-amber);
+            font-size: 1.125rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: var(--light-bg);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1.5rem;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            transition: var(--transition-base);
+        }
+
+        .faq-item:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 2rem 2.5rem;
+            background: white;
+            border: none;
+            text-align: left;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition-base);
+        }
+
+        .faq-question:hover {
+            background: #FAFBFC;
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: var(--primary-indigo);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            background: #FAFBFC;
+        }
+
+        .faq-answer-content {
+            padding: 0 2.5rem 2rem;
+            color: var(--text-secondary);
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 8rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .final-cta h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+        }
+
+        .final-cta p {
+            font-size: 1.35rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .final-cta .hero-cta {
+            justify-content: center;
+        }
+
+        .final-cta .btn-primary {
+            background: white;
+            color: var(--primary-purple);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .final-cta .btn-primary:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .final-cta .btn-secondary {
+            border-color: white;
+            color: white;
+        }
+
+        .final-cta .btn-secondary:hover {
+            background: white;
+            color: var(--primary-purple);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 5rem 3rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1.25rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-about p {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.25rem;
+        }
+
+        .social-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.35rem;
+            transition: var(--transition-base);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon:hover {
+            background: var(--gradient-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 1.5rem;
+            font-size: 1.125rem;
+            font-weight: 800;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.875rem;
+            transition: var(--transition-base);
+            font-size: 1.05rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 1.05rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+
+            .section-header h2 {
+                font-size: 3rem;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .timeline-line {
+                display: none;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                padding: 2rem;
+                box-shadow: var(--shadow-lg);
+                transition: left 0.3s ease;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 5rem 2rem 4rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                text-align: center;
+            }
+
+            .hero-content h1 {
+                font-size: 2.75rem;
+            }
+
+            .hero-cta {
+                justify-content: center;
+            }
+
+            .hero-image {
+                order: -1;
+            }
+
+            .hero-features {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .expense-demo {
+                grid-template-columns: 1fr;
+            }
+
+            .expense-visual {
+                order: -1;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 5rem 2rem;
+            }
+
+            .nav-container,
+            .trust-bar {
+                padding: 1.5rem 2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-content h1 {
+                font-size: 2.25rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.25rem;
+            }
+
+            .expense-header h2 {
+                font-size: 2.25rem;
+            }
+
+            .final-cta h2 {
+                font-size: 2.25rem;
+            }
+
+            .btn-primary, 
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .trust-container {
+                grid-template-columns: 1fr;
+            }
+
+            .language-tabs {
+                flex-direction: column;
+            }
+
+            .lang-tab {
+                width: 100%;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Loading animation */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">💰</div>
+                FinInOne
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#expense-tracker">Expense Tracking</a></li>
+                <li><a href="#how-it-works">How it Works</a></li>
+                <li><a href="#security">Security</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#download" class="btn-download">Download App →</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>
+                    Master Your Money,<br>
+                    <span class="hero-gradient-text">Own Your Future</span>
+                </h1>
+                <p>The complete financial command center for modern India. Track every rupee, plan every goal, and take control of your entire financial life — loans, investments, expenses, taxes, and more.</p>
+                
+                <div class="hero-features">
+                    <div class="hero-feature-item">
+                        <div class="hero-feature-icon">📊</div>
+                        <div class="hero-feature-text">
+                            <h4>Financial Health Score</h4>
+                            <p>Real-time insights & recommendations</p>
+                        </div>
+                    </div>
+                    <div class="hero-feature-item">
+                        <div class="hero-feature-icon">⚡</div>
+                        <div class="hero-feature-text">
+                            <h4>3-Tap Expense Logging</h4>
+                            <p>Track spending in seconds</p>
+                        </div>
+                    </div>
+                    <div class="hero-feature-item">
+                        <div class="hero-feature-icon">🔒</div>
+                        <div class="hero-feature-text">
+                            <h4>Bank-Grade Security</h4>
+                            <p>Your data stays on your device</p>
+                        </div>
+                    </div>
+                    <div class="hero-feature-item">
+                        <div class="hero-feature-icon">🌐</div>
+                        <div class="hero-feature-text">
+                            <h4>3 Languages Supported</h4>
+                            <p>English, हिंदी, ગુજરાતી</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-cta">
+                    <a href="#" class="btn-primary">
+                        <span>📱</span>
+                        Download for iOS
+                    </a>
+                    <a href="#" class="btn-secondary">
+                        <span>🤖</span>
+                        Download for Android
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="phone-mockup">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div class="screen-header">
+                                <h3>Your Financial Dashboard</h3>
+                                <p>December 2024</p>
+                            </div>
+                            <div class="health-score-container">
+                                <div class="health-score-ring">
+                                    <div class="health-score-circle">
+                                        <div class="health-score-inner">
+                                            <div class="health-score-value">82</div>
+                                            <div class="health-score-label">/ 100</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="health-status">Excellent Health</div>
+                            </div>
+                            <div class="screen-stats">
+                                <div class="stat-card">
+                                    <div class="stat-info">
+                                        <div class="stat-icon income">💵</div>
+                                        <div class="stat-details">
+                                            <h4>Monthly Income</h4>
+                                            <div class="stat-value">₹85,000</div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-trend positive">+12%</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-info">
+                                        <div class="stat-icon expense">💸</div>
+                                        <div class="stat-details">
+                                            <h4>Total Expenses</h4>
+                                            <div class="stat-value">₹52,340</div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-trend positive">-8%</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-info">
+                                        <div class="stat-icon savings">💰</div>
+                                        <div class="stat-details">
+                                            <h4>Savings This Month</h4>
+                                            <div class="stat-value">₹32,660</div>
+                                        </div>
+                                    </div>
+                                    <div class="stat-trend positive">+28%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <div class="trust-container">
+            <div class="trust-item">
+                <div class="trust-icon-wrapper">🔐</div>
+                <h4>PIN + Biometric Lock</h4>
+                <p>Multi-layer protection for your financial data</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon-wrapper">💾</div>
+                <h4>100% Local Storage</h4>
+                <p>Your data never leaves your device</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon-wrapper">📴</div>
+                <h4>Works Offline</h4>
+                <p>Full access anytime, anywhere</p>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon-wrapper">🚫</div>
+                <h4>Zero Data Sharing</h4>
+                <p>No third-party access, ever</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="section-header">
+            <span class="section-label">Complete Financial Control</span>
+            <h2>Everything you need in one powerful app</h2>
+            <p>From daily expenses to long-term investments, manage your entire financial life with clarity and confidence</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon-wrapper">📊</div>
+                <h3>Financial Health Score & Dashboard</h3>
+                <p>Get a personalized financial health score with monthly reports, smart insights, and timely reminders to keep you on track.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon-wrapper">💳</div>
+                <h3>Loan & EMI Tracker</h3>
+                <p>Monitor all your loans in one place. Track repayment timelines and use prepayment calculators to become debt-free faster.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon-wrapper">🛡️</div>
+                <h3>Insurance Policy Manager</h3>
+                <p>Keep track of all your insurance policies, get premium payment reminders, and view your total coverage at a glance.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon-wrapper">📈</div>
+                <h3>Investment & SIP Tracking</h3>
+                <p>Visualize your portfolio allocation and track returns across all your investments and systematic investment plans.</p>
+            </div>
+            <div class="feature-card fade-in feature-highlight">
+                <span class="feature-badge">NEW</span>
+                <div class="feature-icon-wrapper">⚡</div>
+                <h3>Daily Expense & Budget Tracker</h3>
+                <p>Log expenses in just 3 taps. Set category-wise monthly budgets and track real-time progress. See exactly where every rupee goes.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon-wrapper">🔔</div>
+                <h3>Bills & Subscription Manager</h3>
+                <p>Record all bill payments and get automatic renewal reminders so you never miss a due date again.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon-wrapper">💎</div>
+                <h3>Net Worth Tracker</h3>
+                <p>See your complete financial picture with assets vs liabilities, and track how your net worth grows over time.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon-wrapper">🧾</div>
+                <h3>Indian Tax Planning Tools</h3>
+                <p>Compare old vs new tax regimes, use HRA calculator, and track your 80C, 80D, and 80CCD deductions seamlessly.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon-wrapper">📒</div>
+                <h3>Udhar Book</h3>
+                <p>Keep track of money you've lent to or borrowed from friends and family. Monitor interest, due dates, and settlement status.</p>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon-wrapper">📁</div>
+                <h3>Secure Document Vault</h3>
+                <p>Store all your important financial documents safely with PIN and biometric protection. Access them whenever you need.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expense Tracker Showcase -->
+    <section class="expense-showcase" id="expense-tracker">
+        <div class="expense-container">
+            <div class="expense-header">
+                <span class="section-label">The Missing Piece</span>
+                <h2>Finally know where your money goes</h2>
+                <p>Track every rupee you spend and stay within budget — effortlessly</p>
+            </div>
+            <div class="expense-demo">
+                <div class="expense-steps">
+                    <div class="expense-step">
+                        <div class="expense-step-number">1</div>
+                        <div class="expense-step-content">
+                            <h3>Log in 3 Taps</h3>
+                            <p>Add expenses instantly. Select category, enter amount, done. No forms, no friction — just speed.</p>
+                        </div>
+                    </div>
+                    <div class="expense-step">
+                        <div class="expense-step-number">2</div>
+                        <div class="expense-step-content">
+                            <h3>Set Smart Budgets</h3>
+                            <p>Create monthly budgets for each spending category. Get alerts when you're approaching limits.</p>
+                        </div>
+                    </div>
+                    <div class="expense-step">
+                        <div class="expense-step-number">3</div>
+                        <div class="expense-step-content">
+                            <h3>Track in Real-Time</h3>
+                            <p>See exactly how much you've spent and how much budget remains — updated live as you log.</p>
+                        </div>
+                    </div>
+                    <div class="expense-step">
+                        <div class="expense-step-number">4</div>
+                        <div class="expense-step-content">
+                            <h3>Get Insights</h3>
+                            <p>Understand spending patterns, identify where to cut back, and make smarter financial decisions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="expense-visual">
+                    <h4>Budget Tracking This Month</h4>
+                    <div class="budget-categories">
+                        <div class="budget-category">
+                            <div class="category-header">
+                                <div class="category-name">
+                                    <div class="category-icon-small food">🍽️</div>
+                                    Food & Dining
+                                </div>
+                                <div class="category-amount">
+                                    ₹8,240 <span>/ ₹12,000</span>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill safe" style="width: 69%"></div>
+                            </div>
+                        </div>
+                        <div class="budget-category">
+                            <div class="category-header">
+                                <div class="category-name">
+                                    <div class="category-icon-small transport">🚗</div>
+                                    Transport
+                                </div>
+                                <div class="category-amount">
+                                    ₹4,850 <span>/ ₹6,000</span>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill warning" style="width: 81%"></div>
+                            </div>
+                        </div>
+                        <div class="budget-category">
+                            <div class="category-header">
+                                <div class="category-name">
+                                    <div class="category-icon-small shopping">🛍️</div>
+                                    Shopping
+                                </div>
+                                <div class="category-amount">
+                                    ₹9,650 <span>/ ₹10,000</span>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill danger" style="width: 97%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-header">
+            <span class="section-label">Simple Setup</span>
+            <h2>Get started in 4 easy steps</h2>
+            <p>From download to financial clarity in minutes</p>
+        </div>
+        <div class="steps-timeline">
+            <div class="timeline-line"></div>
+            <div class="steps-grid">
+                <div class="step fade-in">
+                    <div class="step-icon-wrapper">📱</div>
+                    <h3>Download & Setup</h3>
+                    <p>Install FinInOne and create your secure profile with PIN or biometric protection</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon-wrapper">🔗</div>
+                    <h3>Add Your Finances</h3>
+                    <p>Connect your loans, investments, insurance, bills, and subscriptions in one place</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon-wrapper">⚡</div>
+                    <h3>Log Daily Expenses</h3>
+                    <p>Track spending in 3 taps. Set budgets and watch your progress in real-time</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-icon-wrapper">📊</div>
+                    <h3>Get Smart Insights</h3>
+                    <p>Receive your monthly financial health score, trends, and personalized recommendations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="security" id="security">
+        <div class="section-header">
+            <span class="section-label">Fort Knox Security</span>
+            <h2>Your money, your data, your control</h2>
+            <p>Military-grade security measures to keep your financial life private and protected</p>
+        </div>
+        <div class="security-grid">
+            <div class="security-card fade-in">
+                <div class="security-icon-wrapper">🔐</div>
+                <h3>Multi-Layer App Lock</h3>
+                <p>Secure the app with PIN, pattern, or biometric authentication (fingerprint/face unlock). Your data is protected every time you open the app.</p>
+            </div>
+            <div class="security-card fade-in">
+                <div class="security-icon-wrapper">💾</div>
+                <h3>100% Local Data Storage</h3>
+                <p>All your financial information stays on your device using AsyncStorage. We don't store anything on external servers.</p>
+            </div>
+            <div class="security-card fade-in">
+                <div class="security-icon-wrapper">🚫</div>
+                <h3>Zero Third-Party Access</h3>
+                <p>Your data is yours alone. We never share your information with advertisers, data brokers, or any third parties.</p>
+            </div>
+            <div class="security-card fade-in">
+                <div class="security-icon-wrapper">🔒</div>
+                <h3>Bank-Grade Encryption</h3>
+                <p>Industry-standard encryption protects your sensitive financial documents and personal information at all times.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Multi-language Section -->
+    <section class="multi-language">
+        <div class="section-header">
+            <span class="section-label">Made for India</span>
+            <h2>Your language, your comfort</h2>
+            <p>Use FinInOne in the language you're most comfortable with</p>
+        </div>
+        <div class="language-showcase fade-in">
+            <div class="language-tabs">
+                <button class="lang-tab active" data-lang="en">English</button>
+                <button class="lang-tab" data-lang="hi">हिंदी</button>
+                <button class="lang-tab" data-lang="gu">ગુજરાતી</button>
+            </div>
+            <div class="language-content">
+                <h3>Welcome to FinInOne</h3>
+                <p>Manage your entire financial life in one secure place</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="section-header">
+            <span class="section-label">User Stories</span>
+            <h2>Loved by thousands across India</h2>
+            <p>Real people, real financial transformations</p>
+        </div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card fade-in">
+                <p class="testimonial-text">"I was drowning in spreadsheets tracking my EMIs, SIPs, and expenses. FinInOne brought everything together. The daily expense tracker is a game-changer — I finally know where my money goes each month!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">R</div>
+                    <div class="author-info">
+                        <h4>Rajesh Kumar</h4>
+                        <p>Software Engineer, Bangalore</p>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <p class="testimonial-text">"As a freelancer, tracking invoices, expenses, and taxes was a nightmare. The Udhar Book alone is worth it — I never forget who owes me what. The tax planning tools saved me ₹18,000 this year!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">P</div>
+                    <div class="author-info">
+                        <h4>Priya Desai</h4>
+                        <p>Freelance Designer, Mumbai</p>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <p class="testimonial-text">"Running a small shop means juggling business and personal finances. FinInOne keeps me organized. The budget tracker helps me cut unnecessary expenses, and Gujarati language support means my father can use it too!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">A</div>
+                    <div class="author-info">
+                        <h4>Amit Patel</h4>
+                        <p>Small Business Owner, Ahmedabad</p>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <div class="section-header">
+            <span class="section-label">Got Questions?</span>
+            <h2>Everything you need to know</h2>
+            <p>Quick answers to common questions about FinInOne</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    Is my financial data 100% secure with FinInOne?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Absolutely. Your data is stored locally on your device using AsyncStorage with bank-grade encryption. We use PIN and biometric protection for app access, and we never share your information with third parties. Your financial data stays yours — we can't see it, and neither can anyone else.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Is FinInOne free to use?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes! FinInOne offers a comprehensive free version with all core features including expense tracking, budget management, loan tracking, investment monitoring, and more. We may introduce optional premium features in the future, but the essential tools will always remain free.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Does FinInOne work offline?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes! Since all your data is stored locally on your device, you can access and update your financial information anytime, even without an internet connection. Perfect for tracking expenses on the go.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Which languages does the app support?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        FinInOne is available in English, Hindi (हिंदी), and Gujarati (ગુજરાતી). You can switch between languages anytime from the app settings, making it accessible to more people across India.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Can I track money I lent to friends or family?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Yes! Our Udhar Book feature lets you track money you've lent or borrowed, including interest rates, due dates, repayments, and settlement status. Never forget who owes what again, and maintain healthy financial relationships.
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Does FinInOne connect to my bank account or payment apps?
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Currently, FinInOne uses local data storage and does not connect to live banking or payment backends. You manually add your financial information, which gives you complete control and ensures maximum privacy. Future versions may offer optional secure integrations.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="download">
+        <div class="final-cta-content">
+            <h2>Take control of your financial future today</h2>
+            <p>Join thousands of Indians who've simplified their money management and achieved financial clarity with FinInOne</p>
+            <div class="hero-cta">
+                <a href="#" class="btn-primary">
+                    <span>📱</span>
+                    Download for iOS
+                </a>
+                <a href="#" class="btn-primary">
+                    <span>🤖</span>
+                    Download for Android
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <h3>FinInOne</h3>
+                <p>Your entire financial life in one secure, simple app. Track everything, control everything, achieve everything.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">📘</a>
+                    <a href="#" class="social-icon">🐦</a>
+                    <a href="#" class="social-icon">📷</a>
+                    <a href="#" class="social-icon">💼</a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#expense-tracker">Expense Tracker</a></li>
+                    <li><a href="#how-it-works">How it Works</a></li>
+                    <li><a href="#security">Security</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press Kit</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Data Security</a></li>
+                    <li><a href="#">Disclaimer</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 FinInOne. All rights reserved. Made with ❤️ in India, for India.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.textContent = '☰';
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations with Intersection Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in, .feature-card, .security-card, .testimonial-card, .expense-step, .step').forEach(el => {
+            observer.observe(el);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Language switcher
+        const langTabs = document.querySelectorAll('.lang-tab');
+        const langContent = document.querySelector('.language-content');
+        
+        const translations = {
+            en: {
+                title: 'Welcome to FinInOne',
+                text: 'Manage your entire financial life in one secure place'
+            },
+            hi: {
+                title: 'FinInOne में आपका स्वागत है',
+                text: 'अपने संपूर्ण वित्तीय जीवन को एक सुरक्षित स्थान पर प्रबंधित करें'
+            },
+            gu: {
+                title: 'FinInOne માં તમારું સ્વાગત છે',
+                text: 'તમારા સંપૂર્ણ નાણાકીય જીવનને એક સુરક્ષિત સ્થાને સંચાલિત કરો'
+            }
+        };
+
+        langTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                langTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const lang = tab.dataset.lang;
+                langContent.innerHTML = `
+                    <h3>${translations[lang].title}</h3>
+                    <p>${translations[lang].text}</p>
+                `;
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero-image');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.3}px)`;
+            }
+        });
+
+        // Add stagger effect delays
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        document.querySelectorAll('.step').forEach((step, index) => {
+            step.style.transitionDelay = `${index * 0.15}s`;
+        });
+
+        document.querySelectorAll('.expense-step').forEach((step, index) => {
+            step.style.transitionDelay = `${index * 0.1}s`;
+        });
+
+        // Animate progress bars on scroll
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.progress-fill');
+                    progressBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 200);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const expenseVisual = document.querySelector('.expense-visual');
+        if (expenseVisual) {
+            progressObserver.observe(expenseVisual);
+        }
+    </script>
+</body>
+</html>
